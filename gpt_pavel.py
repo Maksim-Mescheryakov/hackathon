@@ -24,7 +24,11 @@ conn = psycopg2.connect(
 # Создаем объект КУРСОР
 cur = conn.cursor()
 
-# Запрос в БД
+# Запрос в БД на количество записей
+cur.execute('SELECT COUNT(*) FROM "C3826".trecords')
+x = cur.fetchone()[0]
+
+# Запрос в БД записи по ID
 cur.execute('SELECT * FROM "C3826".trecords WHERE id >= 1') # меняя id
 
 # Выводим значения из столбца record_text
